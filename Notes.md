@@ -7,3 +7,5 @@ https://medium.com/@yashodhara.chowkar/internal-working-of-hashmap-in-java-and-p
 3. Hashing (Hashcode generation - map.hashcode())
 4. Collision (Same hashcode for multiple keys)
 5. equals() (Checks for collision)
+
+Linked HashMap - maintains the order of insertion
