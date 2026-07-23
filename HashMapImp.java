@@ -7,7 +7,9 @@ public class HashMapImp{
         hm.put(2, "Spain");
         hm.put(3, "France");
         hm.put(4, "England");
+        hm.putifAbsent(5, "Portugal");
         hm.remove(3);
+        System.out.println("Item at key 2: " + hm.get(2));
         System.out.println("Hashmap size: " + hm.size());
         System.out.println("HashMap is empty: " + hm.isEmpty());
         System.out.println("\n" + "Keys: ");
