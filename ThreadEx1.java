@@ -13,5 +13,9 @@ public class ThreadEx1 implements Runnable {
         Thread obj1 = new Thread(obj);
         obj1.start();
 
+        for(; ; ){
+            System.out.println("Hello");
+        }
+
     }
 }
