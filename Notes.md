@@ -22,3 +22,10 @@ Thread Life Cycle
 3. Running
 4. Blocked/Waiting
 5. Terminated
+
+Thread methods:
+1. join()
+2. start()
+3. run()
+4. sleep()
+5. setPriority() (hint not an order)
