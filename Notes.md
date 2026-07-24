@@ -15,3 +15,10 @@ Linked HashMap - maintains the order of insertion
 Concepts: CPU, Core, Program, Process, Thread, Multitasking
 1. Time sharing (executes quickly and continuously - not parallel, used in single core processor)
 2. Slicing (divides processing time into short, fixed intervals known as time quanta or slices)
+
+Thread Life Cycle
+1. NEW
+2. Runnable (CPU allocation)
+3. Running
+4. Blocked/Waiting
+5. Terminated
