@@ -29,3 +29,6 @@ Thread methods:
 3. run()
 4. sleep()
 5. setPriority() (hint not an order)
+6. interrupt() (checks whether the currentThread is in runnable)
+7. yield() (hint not an order to stop the current thread)
+8. setDaemon()
