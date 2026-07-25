@@ -32,3 +32,32 @@ Thread methods:
 6. interrupt() (checks whether the currentThread is in runnable)
 7. yield() (hint not an order to stop the current thread)
 8. setDaemon()
+
+### JDBC
+Application
+    |
+   API
+    | 
+JDBC Driver Manager
+/   |    \
+SQL Oracle Data Source
+
+JDBC Processing Model
+- One Tier
+- Two Tier (Client app -> Driver -> Database)
+- Three Tier (Client app -> Application Server -> Database)
+
+JDBC Drivers
+1. JDBC-ODBC Bridge Driver
+2. Native-API Driver (Partially Java Driver)
+3. Network Protocol Driver (All-Java Middleware)
+4. Thin Driver (Pure Java Driver)
+
+JDBC Classes and Interfaces
+1. Driver Manager (Establish connection)
+2. Connection (Requests connection and session)
+3. Statement (Excute the SQL queries)
+4. Prepared Statement (Placeholder query)
+5. Callable Statement (Stored procedure)
+6. ResultSet (Input)
+7. SQLException (Exceptions for SQL)
