@@ -9,8 +9,11 @@ import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args){
-        Connection con = MySQLConnection.getConnection();
+        //Connection con = MySQLConnection.getConnection();
         InsertData obj = new InsertData();
         obj.insertInfo();
+
+        UpdateData update = new UpdateData();
+        update.updateInfo();
     }
 }
