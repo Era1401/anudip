@@ -1,85 +1,111 @@
 package org.example;
 
-import model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
+import java.util.Scanner;
 
-public class StudentOperation {
+public class Main {
+    static void main() {
+        Configuration config = new Configuration();
+        config.configure("hibernate.cfg.xml");
+        SessionFactory factory = config.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
 
-        public void addStudent(Session session, Transaction transaction, int id, String name, double marks) {
-
-            Student obj = new Student(id, name, marks);
-            session.persist(obj);
-            transaction.commit();
-            System.out.println("Students saved successfully");
-
-            session.close();
+        StudentOperation obj = new StudentOperation();
 
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose an operation to perform: ");
+        System.out.println("1. Insert ");
+        System.out.println("2. Get ");
+        System.out.println("3. Update ");
+        System.out.println("4. Delete ");
+        System.out.println("5. Get All Students ");
+        System.out.println("6. Get Average Marks ");
+        System.out.println("7. Get Maximum Marks ");
+        System.out.println("8. Get Minimum Marks ");
+        System.out.println("9. Get Count ");
+        System.out.println("10. Get Sum of Marks ");
+
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                Scanner id_sc1 = new Scanner(System.in);
+                Scanner name_sc1 = new Scanner(System.in);
+                Scanner marks_sc1 = new Scanner(System.in);
+                System.out.println("Enter ID for new student");
+                int id = id_sc1.nextInt();
+                id_sc1.nextLine();
+                System.out.println("Enter Name for new student");
+                String name = name_sc1.nextLine();
+                System.out.println("Enter Marks for new student");
+                double marks = marks_sc1.nextDouble();
+
+                obj.addStudent(session, transaction, id, name, marks);
+                break;
+
+            case 2:
+                System.out.println("Enter id to get: ");
+
+                Scanner sc2 = new Scanner(System.in);
+                int search_id = sc2.nextInt();
+                obj.getStudent(session, search_id);
+                break;
+
+            case 3:
+
+                Scanner id_sc3 = new Scanner(System.in);
+                Scanner marks_sc3 = new Scanner(System.in);
+                System.out.println("Enter student id to update marks: ");
+                int update_id = id_sc3.nextInt();
+                id_sc3.nextLine();
+                System.out.println("Enter marks to update: ");
+                double update_marks = marks_sc3.nextDouble();
+                obj.updateStudent(session, transaction, update_id, update_marks);
+                break;
+
+            case 4:
+                System.out.println("Enter id to delete: ");
+                Scanner sc4 = new Scanner(System.in);
+                int delete_id = sc4.nextInt();
+                obj.deleteStudent(session, transaction, delete_id);
+                break;
+
+            case 5:
+                obj.getAllStudent(session);
+                break;
+
+            case 6:
+                obj.getAverage(session);
+                break;
+
+            case 7:
+                obj.getMax(session);
+                break;
+
+            case 8:
+                obj.getMin(session);
+                break;
+
+            case 9:
+                obj.getCount(session);
+                break;
+
+            case 10:
+                obj.getSum(session);
+                break;
+
+            default:
+                System.out.println("Enter valid input.");
+                break;
         }
 
-        public void getStudent(Session session, int id) {
-
-            Student student = session.get(Student.class, id);
-
-            if (student != null) {
-                System.out.println("Student ID: " + student.getId());
-                System.out.println("Student Name: " + student.getName());
-                System.out.println("Student Marks: " + student.getMarks());
-
-            }
-            else{
-                System.out.println("Student not found");
-            }
-
-            session.close();
-
-        }
-
-        public void updateStudent(Session session, Transaction transaction, int id, double update_marks) {
-
-
-            Student student = session.find(Student.class, id);
-            student.setMarks(update_marks);
-
-            session.merge(student);
-            transaction.commit();
-            System.out.println("Student updated successfully");
-
-            session.close();
-        }
-
-        public void deleteStudent(Session session, Transaction transaction, int id) {
-
-            Student student = session.find(Student.class, id);
-            session.remove(student);
-            transaction.commit();
-
-            System.out.println("Student deleted successfully");
-
-            session.close();
-
-        }
-
-        public void getAllStudent(Session session, Transaction transaction) {
-
-            List<Student> students = session
-                    .createQuery("FROM Student", Student.class)
-                    .list();
-
-            for (Student student : students) {
-                System.out.println(
-                        "ID: " + student.getId() +
-                        ", Name: " + student.getName() +
-                        ", Marks: " + student.getMarks()
-                );
-            }
-
-        }
+    }
 
 
 }
