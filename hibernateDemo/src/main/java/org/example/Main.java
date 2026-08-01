@@ -6,48 +6,82 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Scanner;
+
 public class Main {
     static void main() {
         Configuration config = new Configuration();
         config.configure("hibernate.cfg.xml");
         SessionFactory factory = config.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
 
-        //Insert
-        Session session1 = factory.openSession();
-        Transaction transaction1 = session1.beginTransaction();
+        StudentOperation obj = new StudentOperation();
 
-        Student obj = new Student(1,"Era",98);
-        Student obj1 = new Student(2, "Trishala", 100);
-        session1.persist(obj);
-        session1.persist(obj1);
-        transaction1.commit();
-        System.out.println("Student saved successfully");
 
-        //Update
-        Session session2 = factory.openSession();
-        Transaction transaction2 = session2.beginTransaction();
-        Student student = session2.get(Student.class, 1);
-        if(student != null){
-            student.setName("Era Ajay Todkar");
-            student.setMarks(99);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose an operation to perform: ");
+        System.out.println("1. Insert ");
+        System.out.println("2. Get ");
+        System.out.println("3. Update ");
+        System.out.println("4. Delete ");
+        System.out.println("5. Get All Students ");
+
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                Scanner id_sc1 = new Scanner(System.in);
+                Scanner name_sc1 = new Scanner(System.in);
+                Scanner marks_sc1 = new Scanner(System.in);
+                System.out.println("Enter ID for new student");
+                int id = id_sc1.nextInt();
+                id_sc1.nextLine();
+                System.out.println("Enter Name for new student");
+                String name = name_sc1.nextLine();
+                System.out.println("Enter Marks for new student");
+                double marks = marks_sc1.nextDouble();
+
+                obj.addStudent(session, transaction, id, name, marks);
+                break;
+
+            case 2:
+                System.out.println("Enter id to get: ");
+
+                Scanner sc2 = new Scanner(System.in);
+                int search_id = sc2.nextInt();
+                obj.getStudent(session, search_id);
+                break;
+
+            case 3:
+
+                Scanner id_sc3 = new Scanner(System.in);
+                Scanner marks_sc3 = new Scanner(System.in);
+                System.out.println("Enter student id to update marks: ");
+                int update_id = id_sc3.nextInt();
+                id_sc3.nextLine();
+                System.out.println("Enter marks to update: ");
+                double update_marks = marks_sc3.nextDouble();
+                obj.updateStudent(session, transaction, update_id, update_marks);
+                break;
+
+            case 4:
+                System.out.println("Enter id to delete: ");
+                Scanner sc4 = new Scanner(System.in);
+                int delete_id = sc4.nextInt();
+                obj.deleteStudent(session, transaction, delete_id);
+                break;
+
+            case 5:
+                obj.getAllStudent(session, transaction);
+                break;
+
+            default:
+                System.out.println("Enter valid input.");
+                break;
         }
-        transaction2.commit();
-        System.out.println("Student updated successfully");
-
-        //Delete
-        Session session3 = factory.openSession();
-        Transaction transaction3 = session3.beginTransaction();
-        student = session3.get(Student.class, 1);
-        session3.remove(student);
-        transaction3.commit();
-        System.out.println("Student deleted successfully");
-
-
-        session1.close();
-        session2.close();
-        session3.close();
-
-        factory.close();
 
     }
+
+
 }
