@@ -79,7 +79,23 @@ public class Main {
             default:
                 System.out.println("Enter valid input.");
                 break;
+
+            
         }
+
+        Aadhar a1 = new Aadhar();
+        a1.setAadhar_id(1);
+        a1.setAadhar_number("123456789012");
+
+        Person p1 = new Person();
+        p1.setPerson_id(1);
+        p1.setPerson_name("Era");
+        p1.setAadhar(a1);
+
+        session.persist(p1);
+        transaction.commit();
+        session.close();
+        factory.close();
 
     }
 

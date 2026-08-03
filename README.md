@@ -7,4 +7,5 @@
 4. TreeMap Implementation
 5. HashSet Implementation
 6. MultiThreading
-7. JDBC
+7. JDBC + JDBC Project
+8. Hibernate
