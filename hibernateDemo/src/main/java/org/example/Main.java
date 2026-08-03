@@ -1,11 +1,16 @@
 package org.example;
 
-import model.Student;
+import model.Aadhar;
+import model.Department;
+import model.Person;
+import model.Students;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +21,7 @@ public class Main {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        StudentOperation obj = new StudentOperation();
+        /*StudentOperation obj = new StudentOperation();
 
 
         Scanner sc = new Scanner(System.in);
@@ -26,6 +31,11 @@ public class Main {
         System.out.println("3. Update ");
         System.out.println("4. Delete ");
         System.out.println("5. Get All Students ");
+        System.out.println("6. Get Average Marks ");
+        System.out.println("7. Get Maximum Marks ");
+        System.out.println("8. Get Minimum Marks ");
+        System.out.println("9. Get Count ");
+        System.out.println("10. Get Sum of Marks ");
 
         int choice = sc.nextInt();
 
@@ -73,17 +83,36 @@ public class Main {
                 break;
 
             case 5:
-                obj.getAllStudent(session, transaction);
+                obj.getAllStudent(session);
+                break;
+
+            case 6:
+                obj.getAverage(session);
+                break;
+
+            case 7:
+                obj.getMax(session);
+                break;
+
+            case 8:
+                obj.getMin(session);
+                break;
+
+            case 9:
+                obj.getCount(session);
+                break;
+
+            case 10:
+                obj.getSum(session);
                 break;
 
             default:
                 System.out.println("Enter valid input.");
                 break;
-
-            
         }
+        */
 
-        Aadhar a1 = new Aadhar();
+        /*Aadhar a1 = new Aadhar();
         a1.setAadhar_id(1);
         a1.setAadhar_number("123456789012");
 
@@ -91,8 +120,38 @@ public class Main {
         p1.setPerson_id(1);
         p1.setPerson_name("Era");
         p1.setAadhar(a1);
+        */
 
-        session.persist(p1);
+        Department d1 = new Department();
+        d1.setDept_name("CSDS");
+        d1.setDept_id(123);
+
+
+        Students s1 = new Students();
+        s1.setStu_id(101);
+        s1.setStu_name("Era");
+        s1.setSem("7");
+        s1.setDept_id(d1);
+
+        Students s2 = new Students();
+        s2.setStu_id(102);
+        s2.setStu_name("Trishala");
+        s2.setSem("7");
+        s2.setDept_id(d1);
+
+        List<Students> students = new ArrayList<>();
+        students.add(s1);
+        students.add(s2);
+
+        d1.setStudent(students);
+
+
+
+        session.persist(d1);
+
+        session.persist(s1);
+        session.persist(s2);
+
         transaction.commit();
         session.close();
         factory.close();
