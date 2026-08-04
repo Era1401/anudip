@@ -1,9 +1,6 @@
 package org.example;
 
-import model.Aadhar;
-import model.Department;
-import model.Person;
-import model.Students;
+import model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -122,6 +119,7 @@ public class Main {
         p1.setAadhar(a1);
         */
 
+        /*
         Department d1 = new Department();
         d1.setDept_name("CSDS");
         d1.setDept_id(123);
@@ -144,13 +142,35 @@ public class Main {
         students.add(s2);
 
         d1.setStudent(students);
+        */
 
 
+        Employees e1 = new Employees();
+        Employees e2 = new Employees();
+        Projects p1 = new Projects();
+        Projects p2 = new Projects();
 
-        session.persist(d1);
 
-        session.persist(s1);
-        session.persist(s2);
+        e1.setEmp_id(101);
+        e1.setEmp_name("Era");
+
+        e2.setEmp_id(102);
+        e2.setEmp_name("Trishala");
+
+        p1.setProject_id(145);
+        p1.setProject_name("Company Website");
+
+        p2.setProject_id(158);
+        p2.setProject_name("Payment portal");
+
+        e1.addProject(p1);
+        e2.addProject(p2);
+        e2.addProject(p2);
+
+        session.persist(e1);
+        session.persist(e2);
+        session.persist(p1);
+        session.persist(p2);
 
         transaction.commit();
         session.close();
