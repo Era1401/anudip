@@ -61,3 +61,12 @@ JDBC Classes and Interfaces
 5. Callable Statement (Stored procedure)
 6. ResultSet (Input)
 7. SQLException (Exceptions for SQL)
+
+### SpringBoot
+- IOC
+- Dependency Injection
+- Loose Coupling
+- Lightweight
+- OpenSource
+- MVC
+- Security
