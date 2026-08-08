@@ -9,3 +9,6 @@
 6. MultiThreading
 7. JDBC + JDBC Project
 8. Hibernate
+9. JPA Hibernate
+10. Singleton and Factory Pattern
+11. SpringBoot
