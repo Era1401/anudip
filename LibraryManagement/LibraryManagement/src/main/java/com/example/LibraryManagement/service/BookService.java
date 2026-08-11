@@ -19,5 +19,21 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public Book getBookById(int id){
+        return bookRepository.getBookById(id);
+    }
+
+    public Book addBook(Book book){
+        return bookRepository.save(book);
+    }
+
+    public Book updateBook(Integer id, Book book){
+        return bookRepository.update(id, book);
+    }
+
+    public boolean deleteBook(Integer id){
+        return bookRepository.deleteById(id);
+    }
+
 
 }
