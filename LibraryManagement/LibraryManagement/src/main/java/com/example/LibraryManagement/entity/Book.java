@@ -1,12 +1,16 @@
 package com.example.LibraryManagement.entity;
 
 public class Book {
-    private int id;
+    private Integer id;
     private String title;
     private String author;
     private double price;
 
-    public Book(int id, String title, String author, double price) {
+    public Book(){
+
+    }
+
+    public Book(Integer id, String title, String author, double price) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -17,7 +21,7 @@ public class Book {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
